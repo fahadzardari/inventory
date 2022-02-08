@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -14,18 +20,16 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Login routes
+Route::get('/', [LoginController::class , 'index']);
+Route::post('/login', [LoginController::class , 'login']);
+Route::get('/logout' , [LoginController::class , 'logout']);
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//User routes
+Route::get('/user', [UserController::class , 'index'])->middleware('HasRole:user');
+Route::get('/user/list', [UserController::class , 'list'])->middleware('HasRole:user');
 
-require __DIR__.'/auth.php';
+
+//admin routes
+Route::get('/admin',[AdminController::class , 'index'])->middleware('HasRole:admin');
