@@ -21,15 +21,29 @@ use Inertia\Inertia;
 |
 */
 //Login routes
-Route::get('/', [LoginController::class , 'index']);
-Route::post('/login', [LoginController::class , 'login']);
-Route::get('/logout' , [LoginController::class , 'logout']);
+Route::get('/', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'login']);
+Route::get('/logout', [LoginController::class, 'logout']);
+
 
 
 //User routes
-Route::get('/user', [UserController::class , 'index'])->middleware('HasRole:user');
-Route::get('/user/list', [UserController::class , 'list'])->middleware('HasRole:user');
+Route::group(['middleware' => ['HasRole:user']], function () {
+Route::get('/user', [UserController::class, 'index']);
+Route::get('/user/list/{id}', [UserController::class, 'list'])->where('id' , '[0-9]+');
+Route::get('/user/add', [UserController::class, 'add']);
+Route::get('/user/addcategory', [UserController::class, 'addCategory']);
+Route::post('/user/addcategory', [UserController::class, 'addCategoryPost']);
+Route::post('/user/additem', [UserController::class, 'addItem']);
+Route::post('/user/list/delete/{type_of_item}/{id}', [UserController::class, 'deleteItem'])->where(['id' , '[0-9]+'] , ['type_of_item' , '[0-9]+']);
+Route::post('/user/list/increment/{id}', [UserController::class, 'increment'])->where('id' , '[0-9]+');
+Route::post('/user/list/decrement/{id}', [UserController::class, 'decrement'])->where('id' , '[0-9]+');
+
+    //
+});
+
+
 
 
 //admin routes
-Route::get('/admin',[AdminController::class , 'index'])->middleware('HasRole:admin');
+Route::get('/admin', [AdminController::class, 'index'])->middleware('HasRole:admin');

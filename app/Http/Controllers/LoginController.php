@@ -9,10 +9,11 @@ use Inertia\Inertia;
 
 class LoginController extends Controller
 {
-    
+
     function index(){
         $user = session('user');
         if($user){
+
                 if($user->role == 'admin'){
                     return redirect('/admin');
                 }else {
@@ -23,30 +24,26 @@ class LoginController extends Controller
         return Inertia::render('Home');
         }
     }
-    function login(Request $request) {
-        //return Inertia::render('User/UserDashboard');
+    function login(Request $request){
+      //  return Hash::make('1');
         $user = User::where(['email' => $request->form['email']])->first();
         if($user){
-            if(Hash::check($request->form['password'],$user->password)){
+            if(Hash::check($request->form['password'] , $user->password)){
                 session(['user' => $user]);
-                if($user->role == 'user'){
-                return redirect('/user');
-                }
-                else{
+                if($user->role == 'admin')
                     return redirect('/admin');
-                }
-                
-    
-    
-    
+                else
+                    return redirect('/user');
             }
-    
-    
-    
-    
-    
+            else{
+                return 'User Does not exist';
+
+            }
         }
-        echo $user->password;
+        else{
+            return 'User Does not exist';
+
+        }
     }
     function logout(){
         session(['user' => NULL]);

@@ -632,6 +632,10 @@ select {
 .relative {
   position: relative;
 }
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+}
 .inset-0 {
   top: 0px;
   right: 0px;
@@ -655,6 +659,9 @@ select {
 }
 .z-40 {
   z-index: 40;
+}
+.float-right {
+  float: right;
 }
 .m-2 {
   margin: 0.5rem;
@@ -720,6 +727,9 @@ select {
 }
 .-mr-0 {
   margin-right: -0px;
+}
+.mt-5 {
+  margin-top: 1.25rem;
 }
 .block {
   display: block;
@@ -795,6 +805,9 @@ select {
 }
 .w-4\/12 {
   width: 33.333333%;
+}
+.max-w-xl {
+  max-width: 36rem;
 }
 .max-w-6xl {
   max-width: 72rem;
@@ -891,6 +904,9 @@ select {
 .rounded-sm {
   border-radius: 0.125rem;
 }
+.rounded-xl {
+  border-radius: 0.75rem;
+}
 .rounded-l-md {
   border-top-left-radius: 0.375rem;
   border-bottom-left-radius: 0.375rem;
@@ -908,6 +924,9 @@ select {
 .border-t {
   border-top-width: 1px;
 }
+.border-r {
+  border-right-width: 1px;
+}
 .border-b {
   border-bottom-width: 1px;
 }
@@ -924,6 +943,10 @@ select {
 .border-gray-200 {
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
+}
+.border-gray-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
 .border-transparent {
   border-color: transparent;
@@ -972,6 +995,10 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(15 23 42 / var(--tw-bg-opacity));
 }
+.bg-green-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 163 74 / var(--tw-bg-opacity));
+}
 .bg-opacity-80 {
   --tw-bg-opacity: 0.8;
 }
@@ -989,6 +1016,12 @@ select {
 }
 .p-24 {
   padding: 6rem;
+}
+.p-10 {
+  padding: 2.5rem;
+}
+.p-3 {
+  padding: 0.75rem;
 }
 .px-4 {
   padding-left: 1rem;
@@ -1124,6 +1157,9 @@ select {
 }
 .leading-4 {
   line-height: 1rem;
+}
+.tracking-wider {
+  letter-spacing: 0.05em;
 }
 .tracking-widest {
   letter-spacing: 0.1em;
@@ -1265,6 +1301,18 @@ select {
 }
 .ease-in {
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+.placeholder\:text-gray-400::-moz-placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+.placeholder\:text-gray-400:-ms-input-placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+.placeholder\:text-gray-400::placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;

@@ -1,39 +1,64 @@
 <template>
-    <div class="container mx-auto items-center justify-center flex rounded-md mt-4">
-                <table class="shadow-lg bg-white w-full text-center">
-                <thead >
-                    <tr >
-                        <th class="bg-slate-800 text-white border  px-8 py-4">Id</th>
-                        <th class="bg-slate-800 text-white border  px-8 py-4">Item</th>
-                        <th class="bg-slate-800 text-white border  px-8 py-4">Quantity</th>
-                        <th class="bg-slate-800 text-white border  px-8 py-4">Date Added</th>
-                        <th class="bg-slate-800 text-white border  px-8 py-4">Actions</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="border px-8 py-4">1</td>
-                        <td class="border px-8 py-4">Table</td>
-                        <td class="border px-8 py-4">45</td>
-                        <td class="border px-8 py-4">2015-01-01</td>
-                        <td class="border px-8 py-4">
-                            <button class="bg-black text-white font-bold mx-2 p-2 rounded-md shadow-md"> Edit</button>
-                            <button class="bg-red-800 text-white font-bold p-2 rounded-md shadow-md"   > Delete</button>                           
-                        </td>
-
-                    </tr>
-                </tbody>
-                </table>        
-    </div>
+  <tr>
+    <td class="border px-8 py-4">{{ id }}</td>
+    <td class="border px-8 py-4">{{ item_name }}</td>
+    <td class="border px-8 py-4">
+      {{ quantity }}
+    </td>
+    <td class="border px-8 py-4">{{ time_added }}</td>
+    <td class="border px-8 py-4">
+      <button
+        class="bg-black text-white font-bold mx-2 p-2 rounded-md shadow-md"
+      >
+        Edit
+      </button>
+      <button
+        @click="deleteItem(id, type_of_item)"
+        class="bg-red-800 text-white font-bold p-2 rounded-md shadow-md"
+      >
+        Delete
+      </button>
+    </td>
+  </tr>
 </template>
 
 <script>
-    export default {
-        
-    }
+import axios from 'axios';
+export default {
+  props: {
+    id: {
+      type: Number,
+      default: 0,
+    },
+    type_of_item: {
+      type: Number,
+      default: 0,
+    },
+    item_name: {
+      type: String,
+      default: "Noname",
+    },
+    quantity: {
+      type: Number,
+      default: 0,
+    },
+    time_added: {
+      type: Number,
+      default: "sdfsdf",
+    },
+  },
+  methods: {
+    deleteItem(id, type_of_item) {
+      //  alert(id);
+
+      if (confirm("Are you sure?")) {
+        this.$inertia.post("/user/list/delete/" + type_of_item + "/" + id);
+      } else {
+        alert("nthin");
+      }
+    },
+    
+  },
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
